@@ -6,11 +6,11 @@ import time
 
 # Definimos la matriz de transición o de probabilidad de transición
 matriz_transicion = { #La cadena de Markov cuenta con dos estados: Soleado y Nublado
-    "Soleado": {"Soleado": 0.9, "Nublado": 0.1}, 
-    "Nublado": {"Soleado": 0.2, "Nublado": 0.8},
+    "Soleado ☀": {"Soleado ☀": 0.9, "Nublado ☁": 0.1}, 
+    "Nublado ☁": {"Soleado ☀": 0.2, "Nublado ☁": 0.8},
 }
 # Definimos el nombre de los estados de la cadena de Markov para el clima
-nombre_transicion:list[str] = ["Soleado", "Nublado"]
+nombre_transicion:list[str] = ["Soleado ☀", "Nublado ☁"]
 
 def Markov(dias: int) -> list[str]:
     # Inicializamos el estado actual y la lista de climas 
