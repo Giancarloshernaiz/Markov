@@ -2,6 +2,7 @@
 
 # Importamos la librería numpy para generar números aleatorios
 import numpy as np
+import matplotlib.pyplot as plt
 import time
 
 # Definimos la matriz de transición o de probabilidad de transición
@@ -11,6 +12,7 @@ matriz_transicion = { #La cadena de Markov cuenta con dos estados: Soleado y Nub
 }
 # Definimos el nombre de los estados de la cadena de Markov para el clima
 nombre_transicion:list[str] = ["Soleado ☀", "Nublado ☁"]
+
 
 def Markov(dias: int) -> list[str]:
     # Inicializamos el estado actual y la lista de climas 
