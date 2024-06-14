@@ -5,7 +5,6 @@ import matplotlib
 matplotlib.use('Qt5Agg') #Para que no se abra la interfaz gráfica en sistemas sin interfaz gráfica
 import matplotlib.pyplot as plt
 import time
-matplotlib.use('Agg')
 
 # Definimos la matriz de transición o de probabilidad de transición
 matriz_transicion = { #La cadena de Markov cuenta con dos estados: Soleado y Nublado
