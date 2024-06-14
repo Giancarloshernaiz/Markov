@@ -2,6 +2,8 @@
 
 # Importamos la librería numpy para generar números aleatorios
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import time
 
@@ -24,6 +26,7 @@ def Graph(dias: list[str]) -> None:
   ax.set_ylabel('Cantidad de días')
   ax.set_title('Días soleados y nublados')
   plt.show()
+  plt.savefig('clima.png') #Guardamos la gráfica en un archivo en caso de que se el sistema se ejecute en un sistema/backend sin interfaz gráfica
    
 
 
