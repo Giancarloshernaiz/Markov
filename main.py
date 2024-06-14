@@ -13,6 +13,19 @@ matriz_transicion = { #La cadena de Markov cuenta con dos estados: Soleado y Nub
 # Definimos el nombre de los estados de la cadena de Markov para el clima
 nombre_transicion:list[str] = ["Soleado ☀", "Nublado ☁"]
 
+# Graficas de la cantidad de dias soleados y nublados
+def Graph(dias: list[str]) -> None: 
+  #Contamos la cantidad de dias soleados y nublados
+  dias_soleados = dias.count("Soleado ☀")
+  dias_nublados = dias.count("Nublado ☁")
+  #Graficamos la cantidad de dias soleados y nublados
+  fig, ax = plt.subplots()
+  ax.bar(["Soleado ☀", "Nublado ☁"], [dias_soleados, dias_nublados], color=['#FFD700', '#A9A9A9'])
+  ax.set_ylabel('Cantidad de días')
+  ax.set_title('Días soleados y nublados')
+  plt.show()
+   
+
 
 def Markov(dias: int) -> list[str]:
     # Inicializamos el estado actual y la lista de climas 
@@ -20,17 +33,18 @@ def Markov(dias: int) -> list[str]:
     # clima_actual:str = nombre_transicion[0] #Elegimos que el clima sea Soleado
     # clima_actual:str = nombre_transicion[1] #Elegimos que el clima sea Nublado
 
+    # Lista con el resultado de la prediccion de los climas
     lista_climas:list[str] = [clima_actual]
     
     # Hacemos un ciclo para predecir el clima de los próximos días
     for dia in range(dias - 1):  # Restamos 1 porque el primer día ya lo tenemos 
         # Determinamos el clima del día siguiente basado en la probabilidad de transición de la matriz 
         prediccion:str = np.random.choice(nombre_transicion, p=[matriz_transicion[clima_actual].get(state, 0) for state in nombre_transicion])
-        
         # Actualizamos el estado actual y agregamos el clima a la lista
         clima_actual = prediccion
         lista_climas.append(clima_actual)
-    
+
+    # Se retorna una lista con la prediccion de los climas y la cantidad de dias soleados y nublados
     return lista_climas
 
 def main() -> None: #Función principal
@@ -46,6 +60,9 @@ def main() -> None: #Función principal
     for dia, clima in enumerate(climas):
       time.sleep(0.015)
       print("{:<8} {:<15}".format(dia + 1, clima))
+    #Graficamos la cantidad de dias soleados y nublados
+    Graph(climas)
+    
   
   except ValueError:
     print("\nPor favor, introduce un número válido.")
