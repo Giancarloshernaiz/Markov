@@ -156,3 +156,4 @@ cython_debug/
 
 .vscode/
 rest/
+*.png

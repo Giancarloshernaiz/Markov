@@ -1,16 +1,15 @@
 #Modelo de Cadena de Markov para predecir el clima
-
 # Importamos la librería numpy para generar números aleatorios
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import time
+matplotlib.use('Agg')
 
 # Definimos la matriz de transición o de probabilidad de transición
 matriz_transicion = { #La cadena de Markov cuenta con dos estados: Soleado y Nublado
-    "Soleado ☀": {"Soleado ☀": 0.9, "Nublado ☁": 0.1}, 
-    "Nublado ☁": {"Soleado ☀": 0.2, "Nublado ☁": 0.8},
+    "Soleado ☀": {"Soleado ☀": .9, "Nublado ☁": .1}, 
+    "Nublado ☁": {"Soleado ☀": .2, "Nublado ☁": .8},
 }
 # Definimos el nombre de los estados de la cadena de Markov para el clima
 nombre_transicion:list[str] = ["Soleado ☀", "Nublado ☁"]
@@ -40,7 +39,7 @@ def Markov(dias: int) -> list[str]:
     lista_climas:list[str] = [clima_actual]
     
     # Hacemos un ciclo para predecir el clima de los próximos días
-    for dia in range(dias - 1):  # Restamos 1 porque el primer día ya lo tenemos 
+    for _ in range(dias - 1):  # Restamos 1 porque el primer día ya lo tenemos 
         # Determinamos el clima del día siguiente basado en la probabilidad de transición de la matriz 
         prediccion:str = np.random.choice(nombre_transicion, p=[matriz_transicion[clima_actual].get(state, 0) for state in nombre_transicion])
         # Actualizamos el estado actual y agregamos el clima a la lista
@@ -58,11 +57,11 @@ def main() -> None: #Función principal
     climas = Markov(dias_simulacion)
     # Imprimimos la lista de climas
     print(f"\n>>> Después de {dias_simulacion} días, el clima estará: {climas[-1]}")
-    print("\n{:<8} {:<15}".format("Día", "Clima"))
+    print(f"\n{"Dia":<8} {"Clima":<15}")
     print("-" * 20)
     for dia, clima in enumerate(climas):
-      time.sleep(0.015)
-      print("{:<8} {:<15}".format(dia + 1, clima))
+      time.sleep(.015)
+      print(f"{dia+1:<8} {clima:<15}")
     #Graficamos la cantidad de dias soleados y nublados
     Graph(climas)
     
