@@ -3,7 +3,7 @@
 # Importamos la librería numpy para generar números aleatorios
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Qt5Agg') #Para que no se abra la interfaz gráfica en sistemas sin interfaz gráfica
 import matplotlib.pyplot as plt
 import time
 
